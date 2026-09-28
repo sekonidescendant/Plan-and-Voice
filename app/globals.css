@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg-center: #16171F;
+  --bg-edge: #0F1018;
+  --card-bg: #1B1D29;
+  --card-border: rgba(255, 255, 255, 0.06);
+  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --amber: #E8A33D;
+  --amber-dim: #B8822E;
+  --gold-brown: #C7923F;
+  --teal: #3E7C74;
+  --ember: #C4592E;
+  --ember-tint: rgba(196, 89, 46, 0.08);
+  --text-primary: #E8E6E1;
+  --text-secondary: #8A8B96;
+  --text-dim: #5A5B66;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, var(--bg-center) 0%, var(--bg-edge) 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display {
+  font-family: 'Fraunces', Georgia, serif;
+  font-optical-sizing: auto;
+}
+
+.font-mono {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+.eyebrow {
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-dim);
+}
+
+.card-surface {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+}
+
+.press-scale {
+  transition: transform 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+.press-scale:active {
+  transform: scale(0.97);
+}
+
+/* Waveform bar animation */
+.waveform-bar {
+  background: var(--amber);
+  border-radius: 3px;
+  width: 4px;
+  animation: waveform-pulse 0.8s ease-in-out infinite alternate;
+  min-height: 6px;
+}
+
+@keyframes waveform-pulse {
+  0% {
+    transform: scaleY(0.3);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* Mic pulse ring */
+.mic-pulse-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid var(--amber);
+  animation: mic-pulse 2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes mic-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* Schedule row stagger */
+.schedule-row {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: row-in 0.5s ease-out forwards;
+}
+
+@keyframes row-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Status message fade */
+.status-fade {
+  animation: status-fade 0.5s ease-in-out;
+}
+
+@keyframes status-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Focus ring */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(232, 163, 61, 0.3);
+}
+
+/* Remove number input spinners */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
